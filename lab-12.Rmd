@@ -1,5 +1,5 @@
 ---
-title: "Lab 12 - Smoking during pregnancy"
+title: "Portfolio - Smoking during pregnancy"
 author: "Marcus Minko"
 date: "4/1/2022"
 output: github_document
@@ -11,6 +11,26 @@ output: github_document
 library(tidyverse) 
 library(tidymodels)
 library(openintro)
+data(ncbirths)
+view(ncbirths)
+?ncbirths
 ```
+### Vizualize the proportion of low birth weight birth by smoking status of the mother
+```{r birth weight}
+
+
+ncbirths %>% 
+       ggplot(aes(x = lowbirthweight)) + geom_bar() + facet_wrap(~habit)
+
+#Need to remove the missing values 
+
+ncbirths <- na.omit(ncbirths)
+
+#Recreate the visualization with labels and free scales
+
+ncbirths %>% 
+           ggplot(aes(x = lowbirthweight)) + geom_bar(fill = "steel blue") + facet_wrap(~habit, scales = "free") + labs(title = "Does Smoking Impact a Low Birth Weight", x = "Low Birth Weight", y = "Frequency") + theme_minimal()
+
+# you can see that there is a greater proportion of low birth weights among smokers
 
 
